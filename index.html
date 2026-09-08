@@ -215,13 +215,6 @@ tfoot td{background:var(--surface-2);font-weight:800;border-top:2px solid var(--
 
 .two{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));align-items:start}
 
-/* escala */
-.scale{display:grid;gap:8px;margin-top:14px}
-.lvl{display:grid;grid-template-columns:110px 190px 1fr;gap:14px;padding:11px 14px;border:1px solid var(--line);
-  border-radius:10px;font-size:14.2px;background:var(--surface)}
-.lvl.hit{border-color:var(--warn);background:rgba(255,197,66,.10)}
-.lvl b{font-variant-numeric:tabular-nums}
-
 /* sustento */
 details{border:1px solid var(--line);border-radius:12px;background:var(--surface);margin-bottom:9px}
 summary{cursor:pointer;padding:14px 18px;font-weight:700;font-size:15px;display:flex;justify-content:space-between;gap:16px;align-items:center}
@@ -245,7 +238,6 @@ footer .crew{justify-content:center}
   .bub{width:42px;height:42px}
   .ficha .row{grid-template-columns:1fr}
   .ficha dt{border-bottom:1px solid var(--line)}
-  .lvl{grid-template-columns:1fr;gap:3px}
   section.block{padding:56px 16px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -466,24 +458,8 @@ footer .crew{justify-content:center}
     <h3>Puntaje por capacidad</h3>
     <div class="bars" id="capBars"></div>
 
-    <div class="two" style="margin-top:40px">
-      <div>
-        <h3 style="margin-top:0">Perfil por factor</h3>
-        <p class="mute" style="font-size:14.4px">Cuanto más se acerca el polígono al borde, mejor evaluado está el factor. El escalón visible está en integridad o seguridad y en facilidad de prueba.</p>
-        <div id="radar"></div>
-      </div>
-      <div>
-        <h3 style="margin-top:0">Puntaje por métrica</h3>
-        <p class="mute" style="font-size:14.4px">Doce métricas sobre 10 puntos cada una. Total obtenido: <b id="qTot"></b> de 120.</p>
-        <div class="bars" id="metBars"></div>
-      </div>
-    </div>
-
     <h3>Tabla de resultados</h3>
     <div class="tw"><table id="tRes"></table></div>
-
-    <h3>Interpretación</h3>
-    <div class="scale" id="scale"></div>
   </div>
 </section>
 
@@ -500,31 +476,17 @@ footer .crew{justify-content:center}
 <!-- ============ CONCLUSIONES ============ -->
 <section class="block" id="conclusiones">
   <div class="wrap">
-    <h2 class="sec">Conclusiones y recomendaciones</h2>
+    <h2 class="sec">Conclusiones</h2>
     <div class="rule"></div>
 
-    <div class="two">
-      <div>
-        <h3 style="margin-top:0">Conclusiones</h3>
-        <ul class="pts">
-          <li>TikTok alcanza <b id="cTot"></b> puntos sobre 100 y se ubica en el nivel <b>aceptable</b>. Es un producto maduro en experiencia de usuario y rendimiento, más débil en los atributos que el usuario no ve en pantalla.</li>
-          <li>La brecha entre el resultado del cuestionario (<b id="cQ"></b>) y el resultado ponderado por factores (<b id="cTot2"></b>) demuestra el valor del modelo: las métricas con puntaje bajo tocan varios factores a la vez y arrastran el resultado más de lo que sugeriría una suma simple.</li>
-          <li>Integridad o seguridad es el factor más bajo. No se sostiene en una opinión, sino en sanciones firmes de autoridades de protección de datos y en una desinversión societaria impuesta por ley.</li>
-          <li>La capacidad de revisión confirma una limitación estructural del software propietario evaluado con este modelo: sin acceso al código ni a documentación técnica, la facilidad de prueba y la flexibilidad no superan valores medios.</li>
-          <li>Las fortalezas se concentran donde el producto compite comercialmente —operatividad, compleción funcional y eficiencia—, lo que confirma que la calidad percibida y la calidad estructural no coinciden.</li>
-        </ul>
-      </div>
-      <div>
-        <h3 style="margin-top:0">Recomendaciones</h3>
-        <ul class="pts">
-          <li>Implementar cifrado extremo a extremo en la mensajería directa y publicar auditorías independientes del tratamiento de datos, para elevar integridad o seguridad.</li>
-          <li>Modularizar el cliente y permitir desactivar componentes no esenciales, lo que impactaría modularidad, flexibilidad y complejidad.</li>
-          <li>Ofrecer exportación completa de la información del usuario en formatos abiertos y documentados, mejorando reusabilidad e interoperabilidad.</li>
-          <li>Publicar documentación del funcionamiento del sistema de recomendación y de las reglas de moderación, lo que incidiría en consistencia, simplicidad y facilidad de prueba.</li>
-          <li>Optimizar el cliente para equipos de gama baja y reducir el tamaño del paquete de instalación, atendiendo eficiencia de ejecución y complejidad.</li>
-          <li>En contextos institucionales, no adoptar la aplicación como plataforma de gestión de contenidos sin controles adicionales, dado el puntaje del factor integridad o seguridad.</li>
-        </ul>
-      </div>
+    <div class="narrow">
+      <ul class="pts">
+        <li>TikTok alcanza <b id="cTot"></b> puntos sobre 100 y se ubica en el nivel <b>aceptable</b>. Es un producto maduro en experiencia de usuario y rendimiento, más débil en los atributos que el usuario no ve en pantalla.</li>
+        <li>La brecha entre el resultado del cuestionario (<b id="cQ"></b>) y el resultado ponderado por factores (<b id="cTot2"></b>) demuestra el valor del modelo: las métricas con puntaje bajo tocan varios factores a la vez y arrastran el resultado más de lo que sugeriría una suma simple.</li>
+        <li>Integridad o seguridad es el factor más bajo. No se sostiene en una opinión, sino en sanciones firmes de autoridades de protección de datos y en una desinversión societaria impuesta por ley.</li>
+        <li>La capacidad de revisión confirma una limitación estructural del software propietario evaluado con este modelo: sin acceso al código ni a documentación técnica, la facilidad de prueba y la flexibilidad no superan valores medios.</li>
+        <li>Las fortalezas se concentran donde el producto compite comercialmente —operatividad, compleción funcional y eficiencia—, lo que confirma que la calidad percibida y la calidad estructural no coinciden.</li>
+      </ul>
     </div>
 
     <h3>Referencias</h3>
@@ -684,7 +646,6 @@ document.getElementById('tRes').innerHTML = res;
 /* ================= RESULTADO ================= */
 document.getElementById('railScore').textContent = f(total);
 document.getElementById('bigScore').innerHTML = f(total)+'<small>/100</small>';
-document.getElementById('qTot').textContent = qTotal;
 document.getElementById('cTot').textContent = f(total);
 document.getElementById('cTot2').textContent = f(total)+' de 100';
 document.getElementById('cQ').textContent = qTotal+' de 120, equivalente a '+f1(qTotal/120*100)+' %';
@@ -701,50 +662,14 @@ document.getElementById('badge').textContent = 'Nivel ' + nivel.n;
 document.getElementById('veredicto').textContent =
   'Con '+f(total)+' puntos sobre 100, TikTok alcanza el nivel aceptable. Es fuerte donde el usuario lo percibe de inmediato —usabilidad, operatividad y rendimiento— y más débil donde la calidad no se ve en la pantalla: integridad de la información, facilidad de prueba y flexibilidad.';
 
-document.getElementById('scale').innerHTML = NIV.map(x=>
-  '<div class="lvl'+(x===nivel?' hit':'')+'"><b>'+x.r+'</b><span>'+x.n+'</span><span class="mute">'+x.d+'</span></div>').join('');
-
 document.getElementById('capBars').innerHTML = CAPS.map((c,i)=>{
   const pct = capSum[i]/c.peso*100;
   return '<div class="bar"><b><span>'+c.n+'</span><i>'+f(capSum[i])+' / '+c.peso+' · '+f1(pct)+' %</i></b>' +
     '<div class="track"><div class="fill" style="width:'+pct+'%"></div></div></div>';
 }).join('');
 
-document.getElementById('metBars').innerHTML = MET.slice().sort((a,b)=>b.p-a.p).map(m=>
-  '<div class="bar"><b><span>'+m.n+'</span><i>'+m.p+'/10</i></b>' +
-  '<div class="track"><div class="fill q" style="width:'+(m.p*10)+'%;background:linear-gradient(90deg,#25F4EE '+(100-m.p*6)+'%,#FE2C55)"></div></div></div>').join('');
-
 document.getElementById('sust').innerHTML = MET.map(m=>
   '<details><summary>'+m.n+'<span class="pill">'+m.p+' / 10</span></summary><p>'+m.j+'</p></details>').join('');
-
-/* ================= RADAR ================= */
-(function(){
-  const S=440, C=S/2, R=150, N=FACT.length;
-  const pt=(i,v)=>{ const a=-Math.PI/2 + i*2*Math.PI/N, r=R*v/10;
-    return [C+r*Math.cos(a), C+r*Math.sin(a)]; };
-  let g='';
-  [2.5,5,7.5,10].forEach(lv=>{
-    const p=FACT.map((_,i)=>pt(i,lv).join(',')).join(' ');
-    g+='<polygon points="'+p+'" fill="none" stroke="#2e2e2e" stroke-width="1"/>';
-  });
-  FACT.forEach((_,i)=>{ const[x,y]=pt(i,10); g+='<line x1="'+C+'" y1="'+C+'" x2="'+x+'" y2="'+y+'" stroke="#2e2e2e"/>'; });
-  const poly=FACT.map((_,i)=>pt(i,prom[i]).join(',')).join(' ');
-  g+='<polygon points="'+poly+'" fill="rgba(37,244,238,.20)" stroke="#25F4EE" stroke-width="2.2"/>';
-  FACT.forEach((_,i)=>{ const[x,y]=pt(i,prom[i]); g+='<circle cx="'+x+'" cy="'+y+'" r="3.6" fill="#FE2C55"/>'; });
-  FACT.forEach((ft,i)=>{
-    const[x,y]=pt(i,11.9);
-    const anc = x<C-8?'end':(x>C+8?'start':'middle');
-    const words = ft.n.split(' ');
-    const lines = words.length>1 ? [words[0], words.slice(1).join(' ')] : words;
-    g+='<text x="'+x+'" y="'+(y - (lines.length-1)*5)+'" text-anchor="'+anc+'" fill="#9a9aa0" font-size="10.5" font-family="'+
-       'system-ui,sans-serif">'+lines.map((l,k)=>'<tspan x="'+x+'" dy="'+(k?11:0)+'">'+l+'</tspan>').join('')+
-       '</text>';
-    const[lx,ly]=pt(i,prom[i]);
-    g+='<text x="'+(lx+(x<C?-9:9))+'" y="'+(ly-7)+'" text-anchor="'+(x<C?'end':'start')+'" fill="#25F4EE" font-size="10.5" font-weight="700">'+f(prom[i])+'</text>';
-  });
-  document.getElementById('radar').innerHTML =
-    '<svg viewBox="0 0 '+S+' '+S+'" role="img" aria-label="Perfil de los diez factores de calidad" style="width:100%;height:auto">'+g+'</svg>';
-})();
 
 /* ================= NAV ACTIVA ================= */
 const links=[...document.querySelectorAll('.topbar a')];
